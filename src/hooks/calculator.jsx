@@ -86,7 +86,26 @@ const useCalculator = () => {
         }));
       };
 
-      return { lista, setPrecio, setPaginas, setIdiomas };
+      const handleClick = (id) => {
+        switch (id) {
+          case "paginasAdd":
+            setPaginas(lista.extras.paginas ? lista.extras.paginas + 1 : 1);
+            break;
+          case "paginasRemove":
+            setPaginas(lista.extras.paginas - 1);
+            break;
+          case "idiomasAdd":
+            setIdiomas(lista.extras.idiomas ? lista.extras.idiomas + 1 : 1);
+            break;
+          case "idiomasRemove":
+            setIdiomas(lista.extras.idiomas - 1);
+            break;
+          default:
+            return;
+        }
+      };
+
+      return { lista, setPrecio, setPaginas, setIdiomas, handleClick };
     };
 
 export default useCalculator;

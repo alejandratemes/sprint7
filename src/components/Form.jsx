@@ -3,7 +3,7 @@ import { Container } from './FormStyled';
 import Panel from './Panel'
 
 const Form = () => {
-    const { lista, setPrecio, setPaginas, setIdiomas } = useCalculator();
+    const { lista, setPrecio, setPaginas, setIdiomas, handleClick } = useCalculator();
     const {
       web: { selected: webSelected },
       seo: { selected: seoSelected },
@@ -22,7 +22,14 @@ const Form = () => {
               onChange={(e) => setPrecio("web")}
             />
             Una página web (500€)
-            {(lista.web.selected) && <Panel paginas={lista.extras.paginas} idiomas={lista.extras.idiomas} setPaginas={setPaginas} setIdiomas={setIdiomas}/>}
+            {(lista.web.selected) && (
+            <Panel 
+              paginas={lista.extras.paginas} 
+              idiomas={lista.extras.idiomas} 
+              setPaginas={setPaginas} 
+              setIdiomas={setIdiomas} 
+              handleClick={handleClick}
+            />)}
             <input
               id="inputSeo"
               type="checkbox"
