@@ -1,6 +1,8 @@
 import useCalculator from '../hooks/calculator';
 import { Container } from './FormStyled';
 import Panel from './Panel'
+import {useEffect} from 'react';
+import {setStorage} from './localStorage'
 
 const Form = () => {
     const { lista, setPrecio, setPaginas, setIdiomas, handleClick } = useCalculator();
@@ -8,9 +10,19 @@ const Form = () => {
       web: { selected: webSelected },
       seo: { selected: seoSelected },
       ads: { selected: adsSelected },
+      extras: {paginas, idiomas},
       total,
     } = lista;
   
+    useEffect(() => {
+      setStorage("webSelected", webSelected);
+      setStorage("paginasSelected", paginas);
+      setStorage("idiomasSelected", idiomas);
+      setStorage("seoSelected", seoSelected);
+      setStorage("adsSelected", adsSelected);
+      setStorage("total", total);
+    }, [webSelected, seoSelected, adsSelected, paginas, idiomas, total]);
+
     return (
       <Container>
         <h2>¿Qué quieres hacer?</h2>
@@ -22,10 +34,10 @@ const Form = () => {
               onChange={(e) => setPrecio("web")}
             />
             Una página web (500€)
-            {(lista.web.selected) && (
+            {(webSelected) && (
             <Panel 
-              paginas={lista.extras.paginas} 
-              idiomas={lista.extras.idiomas} 
+              paginas={paginas} 
+              idiomas={idiomas} 
               setPaginas={setPaginas} 
               setIdiomas={setIdiomas} 
               handleClick={handleClick}
