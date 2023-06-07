@@ -1,9 +1,9 @@
-import Form from './components/Form'
+import Router from './components/modules/Router'
 
 function App() {
   return (
     <div className="App">
-        <Form/>
+        <Router/>
     </div>
   );
 }
